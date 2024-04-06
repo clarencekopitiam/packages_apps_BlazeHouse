@@ -261,4 +261,9 @@
     <!-- Less boring heads up -->
     <string name="less_boring_heads_up_title">Priority heads up</string>
     <string name="less_boring_heads_up_summary">Show heads up only for calls, messages, alarms, reminders and priority conversations</string>
+
+
+    <!-- Quick settings haptic feedback -->
+    <string name="quick_settings_vibrate_title">Vibrate on touch</string>
+    <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
 </resources>

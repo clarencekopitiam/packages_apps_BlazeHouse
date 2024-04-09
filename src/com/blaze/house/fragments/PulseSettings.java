@@ -36,6 +36,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.blaze.house.colorpicker.ColorPickerPreference;
+import com.blaze.house.preferences.SecureSettingSwitchPreference;
 
 public class PulseSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -61,10 +62,10 @@ public class PulseSettings extends SettingsPreferenceFragment implements
 
     private static final String PULSE_SETTINGS_FOOTER = "pulse_settings_footer";
 
-    private SwitchPreferenceCompat mNavbarPulse;
-    private SwitchPreferenceCompat mLockscreenPulse;
-    private SwitchPreferenceCompat mAmbientPulse;
-    private SwitchPreferenceCompat mPulseSmoothing;
+    private SecureSettingSwitchPreference mNavbarPulse;
+    private SecureSettingSwitchPreference mLockscreenPulse;
+    private SecureSettingSwitchPreference mAmbientPulse;
+    private SecureSettingSwitchPreference mPulseSmoothing;
     private Preference mRenderMode;
     private ListPreference mColorModePref;
     private ColorPickerPreference mColorPickerPref;
@@ -82,19 +83,19 @@ public class PulseSettings extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getContext().getContentResolver();
 
-        mNavbarPulse = (SwitchPreferenceCompat) findPreference(NAVBAR_PULSE_ENABLED_KEY);
+        mNavbarPulse = (SecureSettingSwitchPreference) findPreference(NAVBAR_PULSE_ENABLED_KEY);
         boolean navbarPulse = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.NAVBAR_PULSE_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
         mNavbarPulse.setChecked(navbarPulse);
         mNavbarPulse.setOnPreferenceChangeListener(this);
 
-        mLockscreenPulse = (SwitchPreferenceCompat) findPreference(LOCKSCREEN_PULSE_ENABLED_KEY);
+        mLockscreenPulse = (SecureSettingSwitchPreference) findPreference(LOCKSCREEN_PULSE_ENABLED_KEY);
         boolean lockscreenPulse = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.LOCKSCREEN_PULSE_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
         mLockscreenPulse.setChecked(lockscreenPulse);
         mLockscreenPulse.setOnPreferenceChangeListener(this);
 
-        mAmbientPulse = (SwitchPreferenceCompat) findPreference(AMBIENT_PULSE_ENABLED_KEY);
+        mAmbientPulse = (SecureSettingSwitchPreference) findPreference(AMBIENT_PULSE_ENABLED_KEY);
         boolean ambientPulse = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.AMBIENT_PULSE_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
         mAmbientPulse.setChecked(ambientPulse);
@@ -113,7 +114,7 @@ public class PulseSettings extends SettingsPreferenceFragment implements
         mSolidBarsCat = (PreferenceCategory) findPreference(
                 PULSE_RENDER_CATEGORY_SOLID);
 
-        mPulseSmoothing = (SwitchPreferenceCompat) findPreference(PULSE_SMOOTHING_KEY);
+        mPulseSmoothing = (SecureSettingSwitchPreference) findPreference(PULSE_SMOOTHING_KEY);
 
         mFooterPref = findPreference(PULSE_SETTINGS_FOOTER);
         mFooterPref.setTitle(R.string.pulse_help_policy_notice_summary);
